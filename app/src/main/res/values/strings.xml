@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">LAXSpecials</string>
+    <string name="action_settings">Settings</string>
+    <string name="ic_lacrosse_specials">Starbuzz logo</string>
+    <string-array name="week_days">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+    <string name="title_activity_display_specials">DisplaySpecials</string>
+</resources>
