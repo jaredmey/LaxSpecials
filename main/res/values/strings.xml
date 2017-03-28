@@ -3,6 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="ic_lacrosse_specials">Starbuzz logo</string>
     <string-array name="week_days">
+        <item>Select day</item>
         <item>Monday</item>
         <item>Tuesday</item>
         <item>Wednesday</item>
@@ -12,6 +13,7 @@
         <item>Sunday</item>
     </string-array>
     <string-array name="bar_names">
+        <item>Select bar</item>
         <item>Blue Moon</item>
         <item>Eagles Nest</item>
         <item>Sports Nut</item>
