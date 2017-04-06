@@ -64,6 +64,29 @@ public class SpecialDataAccess {
         return specials;
     }
 
+    public ArrayList<Special> getAllSpecialsByBar (String bar) {
+        ArrayList<Special> specials = new ArrayList<Special>();
+
+        String query = "SELECT specials._id, specials.bar_id, bars.bar_name, special_day, special_description, bar_address FROM specials INNER JOIN bars ON bars._id = specials.bar_id  WHERE bars.bar_name = '" + bar +"'";
+        Log.d(TAG, query);
+        Cursor c = database.rawQuery(query,null);           //'c' is the handler on the Cursor
+
+        // convert the results in the cursor into an array
+        c.moveToFirst();
+        while(!c.isAfterLast()){
+            Special s = new Special();                      //'s' is the handler on the Special's object
+            s.setId(c.getLong(0));                          //Get the Id from the database using the cursor
+            s.setBarId(c.getLong(1));                       //Get the BarId from the database using the cursor
+            s.setBarName(c.getString(2));                   //Get the BarName from the database using the cursor
+            s.setDay(c.getString(3));                       //Get the Day from the database using the cursor
+            s.setDescription(c.getString(4));               //Get the Description from the database using the cursor
+            s.setAddress(c.getString(5));                   //Get the Address from the database using the cursor
+            specials.add(s);
+            c.moveToNext();
+        }
+        c.close();                                          //The Cursor has to close in order to continue
+        return specials;                                    //Returns the full list of Specials
+    }
 
     public ArrayList<Special> getAllSpecialsByDay (String day){
 

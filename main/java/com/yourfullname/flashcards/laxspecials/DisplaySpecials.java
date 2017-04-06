@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class DisplaySpecials extends AppCompatActivity {
 
     public static final String DAY = "day";
+    public static final String BAR = "bar";
 
     MySQLiteOpenHelper dbHelper;
     BarDataAccess barda;
@@ -40,16 +41,30 @@ public class DisplaySpecials extends AppCompatActivity {
         });
 
         String selectedDay = getIntent().getStringExtra(DAY);
-        Toast.makeText(this, selectedDay, Toast.LENGTH_LONG).show();
+        String selectedBar = getIntent().getStringExtra(BAR);
 
         dbHelper = new MySQLiteOpenHelper(this);                                    //dbHelper is an object in the MySQLiteOpenHelper class.
         dbHelper.getWritableDatabase();
         specialda = new SpecialDataAccess(dbHelper);                                //Access the data inside the Specials database
-        ArrayList<Special> specials = specialda.getAllSpecialsByDay(selectedDay);   //An array of specials is created from the Specials database. The array is dependent on which day the user selected.
-        //Toast.makeText(this, specials.toString(),Toast.LENGTH_LONG).show();
-        ListView listView = (ListView) findViewById(R.id.listView);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
-        ArrayAdapter<Special> adapter = new ArrayAdapter<Special>(this, android.R.layout.simple_list_item_1, specials);
-        listView.setAdapter(adapter);
 
+        if (selectedDay != null) {
+            Toast.makeText(this, selectedDay, Toast.LENGTH_LONG).show();
+            ArrayList<Special> specials = specialda.getAllSpecialsByDay(selectedDay);   //An array of specials is created from the Specials database. The array is dependent on which day the user selected.
+            //Toast.makeText(this, specials.toString(),Toast.LENGTH_LONG).show();
+            ListView listView = (ListView) findViewById(R.id.listView);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
+            ArrayAdapter<Special> adapter = new ArrayAdapter<Special>(this, android.R.layout.simple_list_item_1, specials);
+            listView.setAdapter(adapter);
+        }
+        else {
+            Toast.makeText(this, selectedBar, Toast.LENGTH_LONG).show();
+            ArrayList<Special> specials = specialda.getAllSpecialsByBar(selectedBar);   //An array of specials is created from the Specials database. The array is dependent on which day the user selected.
+            for (int i = 0; i < specials.size(); i++) {
+                Log.d("LAXSpecials", "" + specials.get(i));
+            }
+            //Toast.makeText(this, specials.toString(),Toast.LENGTH_LONG).show();
+            ListView listView = (ListView) findViewById(R.id.listView);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
+            ArrayAdapter<Special> adapter = new ArrayAdapter<Special>(this, android.R.layout.simple_list_item_1, specials);
+            listView.setAdapter(adapter);
+        }
     }
 }
