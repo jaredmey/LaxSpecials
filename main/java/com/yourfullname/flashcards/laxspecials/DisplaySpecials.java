@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -52,7 +53,8 @@ public class DisplaySpecials extends AppCompatActivity {
             ArrayList<Special> specials = specialda.getAllSpecialsByDay(selectedDay);   //An array of specials is created from the Specials database. The array is dependent on which day the user selected.
             //Toast.makeText(this, specials.toString(),Toast.LENGTH_LONG).show();
             ListView listView = (ListView) findViewById(R.id.listView);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
-            ArrayAdapter<Special> adapter = new ArrayAdapter<Special>(this, android.R.layout.simple_list_item_1, specials);
+            ArrayAdapter<Special> adapter = new ArrayAdapter<Special>(this, android.R.layout.simple_list_item_multiple_choice, specials);
+            listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
             listView.setAdapter(adapter);
         }
         else {
@@ -63,7 +65,8 @@ public class DisplaySpecials extends AppCompatActivity {
             }
             //Toast.makeText(this, specials.toString(),Toast.LENGTH_LONG).show();
             ListView listView = (ListView) findViewById(R.id.listView);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
-            ArrayAdapter<Special> adapter = new ArrayAdapter<Special>(this, android.R.layout.simple_list_item_1, specials);
+            ArrayAdapter<Special> adapter = new ArrayAdapter<Special>(this, android.R.layout.simple_list_item_multiple_choice, specials);
+            listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
             listView.setAdapter(adapter);
         }
     }
