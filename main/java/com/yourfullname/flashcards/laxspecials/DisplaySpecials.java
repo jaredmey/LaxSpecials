@@ -53,7 +53,7 @@ public class DisplaySpecials extends AppCompatActivity {
             ArrayList<Special> specials = specialda.getAllSpecialsByDay(selectedDay);   //An array of specials is created from the Specials database. The array is dependent on which day the user selected.
             //Toast.makeText(this, specials.toString(),Toast.LENGTH_LONG).show();
             ListView listView = (ListView) findViewById(R.id.listView);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
-            ArrayAdapter<Special> adapter = new ArrayAdapter<Special>(this, android.R.layout.simple_list_item_multiple_choice, specials);
+            ArrayAdapter<Special> adapter = new ArrayAdapter<Special>(this, R.layout.display_specials_button, specials);
             listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
             listView.setAdapter(adapter);
         }
@@ -65,7 +65,7 @@ public class DisplaySpecials extends AppCompatActivity {
             }
             //Toast.makeText(this, specials.toString(),Toast.LENGTH_LONG).show();
             ListView listView = (ListView) findViewById(R.id.listView);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
-            ArrayAdapter<Special> adapter = new ArrayAdapter<Special>(this, android.R.layout.simple_list_item_multiple_choice, specials);
+            ArrayAdapter<Special> adapter = new ArrayAdapter<Special>(this, R.layout.display_specials_button, specials);
             listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
             listView.setAdapter(adapter);
         }
