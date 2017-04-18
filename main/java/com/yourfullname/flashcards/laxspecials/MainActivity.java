@@ -80,6 +80,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void sendToFavorites(View v){
+        Spinner days = (Spinner)findViewById(R.id.days);                //Using the id of the spinner in the layout file.
+        Spinner bars = (Spinner)findViewById((R.id.bars));
+        String selectedDay = String.valueOf(days.getSelectedItem());    //Which ever day gets selected becomes the value in 'selectedDay'.
+        String selectedBar = String.valueOf(bars.getSelectedItem());
+        Intent i = new Intent(this, DisplaySpecials.class);             //Creating a new intent named i. Transfer from 'this' to DisplaySpecials.
+        i.putExtra(DisplaySpecials.BAR, selectedBar);
+        startActivity(i);                                               //Open up the next activity
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
