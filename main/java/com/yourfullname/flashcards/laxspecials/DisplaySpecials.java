@@ -24,6 +24,7 @@ public class DisplaySpecials extends AppCompatActivity {
     MySQLiteOpenHelper dbHelper;
     BarDataAccess barda;
     SpecialDataAccess specialda;
+    FavoriteDataAccess favda;
     ArrayList<Bar> bars;
 
 
@@ -40,6 +41,7 @@ public class DisplaySpecials extends AppCompatActivity {
         dbHelper = new MySQLiteOpenHelper(this);                                    //dbHelper is an object in the MySQLiteOpenHelper class.
         dbHelper.getWritableDatabase();
         specialda = new SpecialDataAccess(dbHelper);
+        favda = new FavoriteDataAccess(dbHelper);
         //Access the data inside the Specials database
         ListView listView = (ListView) findViewById(R.id.listView);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
 
@@ -74,6 +76,7 @@ public class DisplaySpecials extends AppCompatActivity {
                     if (checked.get(key)) {
                         Special special = (Special) tags.getItemAtPosition(key);
                         //send data from special to Favorites Table in database
+                        favda.insertSpecialIntoFavorites(special.getId());
                     }
                 }
             }

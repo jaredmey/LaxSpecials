@@ -2,6 +2,7 @@ package com.yourfullname.flashcards.laxspecials;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.pm.PackageInfo;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -34,6 +35,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
         db.execSQL(BarDataAccess.TABLE_CREATE);
         db.execSQL(SpecialDataAccess.TABLE_CREATE);
+        db.execSQL(FavoriteDataAccess.TABLE_CREATE);
     }
 
     @Override
