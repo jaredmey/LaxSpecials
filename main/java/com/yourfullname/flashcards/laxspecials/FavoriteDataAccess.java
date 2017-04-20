@@ -1,5 +1,6 @@
 package com.yourfullname.flashcards.laxspecials;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -39,5 +40,8 @@ public class FavoriteDataAccess {
         Log.d(TAG, query);
         Cursor c = database.rawQuery(query, null);
         c.close();
+
+        //ContentValues insertVals = new ContentValues();
+
     }
 }
