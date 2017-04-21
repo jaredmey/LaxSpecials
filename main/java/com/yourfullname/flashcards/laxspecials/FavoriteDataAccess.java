@@ -35,13 +35,14 @@ public class FavoriteDataAccess {
 
     public void insertSpecialIntoFavorites(Long id) {
 
-        String query = String.format("INSERT INTO %s VALUES (%d%n, %d%n)", TABLE_NAME, id, 0);
+        String query = String.format("INSERT INTO %s VALUES (%d, %d)", TABLE_NAME, id, 0);
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_SPECIALS_ID, id);
+        values.put(COLUMN_SPECIALS_USER_ID, 0);
+        this.database.insert(TABLE_NAME, null, values);
 
         Log.d(TAG, query);
-        Cursor c = database.rawQuery(query, null);
-        c.close();
-
-        //ContentValues insertVals = new ContentValues();
-
+       
     }
 }
