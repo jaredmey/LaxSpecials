@@ -79,6 +79,16 @@ public class MainActivity extends AppCompatActivity {
             toast.show();
         }
     }
+    public void sendToFavorites(View v){
+        //Not complete yet
+        Spinner days = (Spinner)findViewById(R.id.days);                //Using the id of the spinner in the layout file.
+        Spinner bars = (Spinner)findViewById((R.id.bars));
+        String selectedDay = String.valueOf(days.getSelectedItem());    //Which ever day gets selected becomes the value in 'selectedDay'.
+        String selectedBar = String.valueOf(bars.getSelectedItem());
+        Intent i = new Intent(this, DisplayFavorites.class);             //Creating a new intent named i. Transfer from 'this' to DisplaySpecials.
+        i.putExtra(DisplayFavorites.BAR, selectedBar);
+        startActivity(i);                                               //Open up the next activity
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
