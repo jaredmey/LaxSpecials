@@ -20,7 +20,6 @@ public class DisplayFavorites extends AppCompatActivity {
 
     MySQLiteOpenHelper dbHelper;
     BarDataAccess barda;
-    SpecialDataAccess specialda;
     FavoriteDataAccess favda;
     ArrayList<Bar> bars;
 
@@ -28,47 +27,21 @@ public class DisplayFavorites extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_specials);
+        setContentView(R.layout.activity_display_favorites);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        String selectedDay = getIntent().getStringExtra(DAY);
-        String selectedBar = getIntent().getStringExtra(BAR);
 
         dbHelper = new MySQLiteOpenHelper(this);                                    //dbHelper is an object in the MySQLiteOpenHelper class.
         dbHelper.getWritableDatabase();
 
-        specialda = new SpecialDataAccess(dbHelper);
         favda = new FavoriteDataAccess(dbHelper);
         //Access the data inside the Specials database
         ListView listView = (ListView) findViewById(R.id.listView);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
-        specialda = new SpecialDataAccess(dbHelper);                                //Access the data inside the Specials database
 
-
-            Toast.makeText(this, selectedDay, Toast.LENGTH_LONG).show();
-            ArrayList<Special> specials = specialda.getAllSpecialsByDay(selectedDay);   //An array of specials is created from the Specials database. The array is dependent on which day the user selected.
-            //Toast.makeText(this, specials.toString(),Toast.LENGTH_LONG).show();
-            listView = (ListView) findViewById(R.id.listView);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
-            ArrayAdapter<Special> adapter = new ArrayAdapter<Special>(this, R.layout.display_specials_button, specials);
-            listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-            listView.setAdapter(adapter);
-
-        Button button = (Button) findViewById(R.id.favbutton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ListView tags = (ListView) findViewById(R.id.listView);
-                int len = tags.getCount();
-                SparseBooleanArray checked = tags.getCheckedItemPositions();
-                for (int i = 0; i < len; i++) {
-                    int key = checked.keyAt(i);
-                    if (checked.get(key)) {
-                        Special special = (Special) tags.getItemAtPosition(key);
-                        //send data from special to Favorites Table in database
-                        favda.insertSpecialIntoFavorites(special.getId());
-                    }
-                }
-            }
-        });
+        ArrayList<Special> specials = favda.getFavorites();   //An array of specials is created from the Specials database. The array is dependent on which day the user selected.
+        //Toast.makeText(this, specials.toString(),Toast.LENGTH_LONG).show();
+        listView = (ListView) findViewById(R.id.listView);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
+        ArrayAdapter<Special> adapter = new ArrayAdapter<Special>(this, R.layout.content_display_favorites, specials);
+        listView.setAdapter(adapter);
     }
 }

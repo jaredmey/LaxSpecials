@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 /**
  * Created by jmeyer27 on 4/18/17.
  */
@@ -43,10 +45,31 @@ public class FavoriteDataAccess {
         this.database.insert(TABLE_NAME, null, values);
 
         Log.d(TAG, query);
-       
     }
 
-    public void getFavorites(){
+    public ArrayList<Special> getFavorites()  {
 
+        ArrayList<Special> specials = new ArrayList<Special>();
+
+        String query = "SELECT specials._id, specials.bar_id, bars.bar_name, special_day, special_description, bar_address FROM favorites NATURAL JOIN specials NATURAL JOIN bars";
+        Log.d(TAG, query);
+        Cursor c = database.rawQuery(query,null);           //'c' is the handler on the Cursor
+
+        // convert the results in the cursor into an array
+        c.moveToFirst();
+        while(!c.isAfterLast()){
+            Special s = new Special();                      //'s' is the handler on the Special's object
+            s.setId(c.getLong(0));                          //Get the Id from the database using the cursor
+            s.setBarId(c.getLong(1));                       //Get the BarId from the database using the cursor
+            s.setBarName(c.getString(2));                   //Get the BarName from the database using the cursor
+            s.setDay(c.getString(3));                       //Get the Day from the database using the cursor
+            s.setDescription(c.getString(4));               //Get the Description from the database using the cursor
+            s.setAddress(c.getString(5));                   //Get the Address from the database using the cursor
+            specials.add(s);
+            c.moveToNext();
+        }
+        c.close();
+
+        return specials;
     }
 }
