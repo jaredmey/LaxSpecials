@@ -6,8 +6,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -22,6 +24,7 @@ public class DisplaySpecials extends AppCompatActivity {
     MySQLiteOpenHelper dbHelper;
     BarDataAccess barda;
     SpecialDataAccess specialda;
+    FavoriteDataAccess favda;
     ArrayList<Bar> bars;
 
 
@@ -32,27 +35,23 @@ public class DisplaySpecials extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         String selectedDay = getIntent().getStringExtra(DAY);
         String selectedBar = getIntent().getStringExtra(BAR);
 
         dbHelper = new MySQLiteOpenHelper(this);                                    //dbHelper is an object in the MySQLiteOpenHelper class.
         dbHelper.getWritableDatabase();
+
+        specialda = new SpecialDataAccess(dbHelper);
+        favda = new FavoriteDataAccess(dbHelper);
+        //Access the data inside the Specials database
+        ListView listView = (ListView) findViewById(R.id.listView);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
         specialda = new SpecialDataAccess(dbHelper);                                //Access the data inside the Specials database
 
         if (selectedDay != null) {
             Toast.makeText(this, selectedDay, Toast.LENGTH_LONG).show();
             ArrayList<Special> specials = specialda.getAllSpecialsByDay(selectedDay);   //An array of specials is created from the Specials database. The array is dependent on which day the user selected.
             //Toast.makeText(this, specials.toString(),Toast.LENGTH_LONG).show();
-            ListView listView = (ListView) findViewById(R.id.listView);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
+            listView = (ListView) findViewById(R.id.listView);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
             ArrayAdapter<Special> adapter = new ArrayAdapter<Special>(this, R.layout.display_specials_button, specials);
             listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
             listView.setAdapter(adapter);
@@ -64,10 +63,28 @@ public class DisplaySpecials extends AppCompatActivity {
                 Log.d("LAXSpecials", "" + specials.get(i));
             }
             //Toast.makeText(this, specials.toString(),Toast.LENGTH_LONG).show();
-            ListView listView = (ListView) findViewById(R.id.listView);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
+            listView = (ListView) findViewById(R.id.listView);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
             ArrayAdapter<Special> adapter = new ArrayAdapter<Special>(this, R.layout.display_specials_button, specials);
             listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
             listView.setAdapter(adapter);
         }
+
+        Button button = (Button) findViewById(R.id.favbutton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ListView tags = (ListView) findViewById(R.id.listView);
+                int len = tags.getCount();
+                SparseBooleanArray checked = tags.getCheckedItemPositions();
+                for (int i = 0; i < len; i++) {
+                    int key = checked.keyAt(i);
+                    if (checked.get(key)) {
+                        Special special = (Special) tags.getItemAtPosition(key);
+                        //send data from special to Favorites Table in database
+                        favda.insertSpecialIntoFavorites(special.getId());
+                    }
+                }
+            }
+        });
     }
 }
