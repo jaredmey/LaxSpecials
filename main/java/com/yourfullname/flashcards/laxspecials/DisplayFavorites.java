@@ -41,8 +41,9 @@ public class DisplayFavorites extends AppCompatActivity {
             System.out.println(i.getBarName() + " " + i.getDescription() + " " + i.getAddress());
         }
         //Toast.makeText(this, specials.toString(),Toast.LENGTH_LONG).show();
-        ListView listView = new ListView(this);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
-        ArrayAdapter<Special> adapter = new ArrayAdapter<Special>(this, R.layout.content_display_favorites, R.id.textview, specials);
+        ListView listView = (ListView) findViewById(R.id.listView2);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
+        ArrayAdapter<Special> adapter = new ArrayAdapter<Special>(this, R.layout.display_favorites_button, specials);
+        listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         listView.setAdapter(adapter);
     }
 }
