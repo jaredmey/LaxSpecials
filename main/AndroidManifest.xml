@@ -22,6 +22,10 @@
             android:name=".DisplaySpecials"
             android:label="@string/title_activity_display_specials"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".DisplayFavorites"
+            android:label="DisplayFavorites"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

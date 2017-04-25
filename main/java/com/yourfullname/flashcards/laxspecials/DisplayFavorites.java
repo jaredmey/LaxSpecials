@@ -35,13 +35,14 @@ public class DisplayFavorites extends AppCompatActivity {
         dbHelper.getWritableDatabase();
 
         favda = new FavoriteDataAccess(dbHelper);
-        //Access the data inside the Specials database
-        ListView listView = (ListView) findViewById(R.id.listView);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
 
-        ArrayList<Special> specials = favda.getFavorites();   //An array of specials is created from the Specials database. The array is dependent on which day the user selected.
+        ArrayList<Special> specials = favda.getFavorites();                         //An array of specials is created from the Specials database. The array is dependent on which day the user selected.
+        for (Special i : specials) {
+            System.out.println(i.getBarName() + " " + i.getDescription() + " " + i.getAddress());
+        }
         //Toast.makeText(this, specials.toString(),Toast.LENGTH_LONG).show();
-        listView = (ListView) findViewById(R.id.listView);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
-        ArrayAdapter<Special> adapter = new ArrayAdapter<Special>(this, R.layout.content_display_favorites, specials);
+        ListView listView = new ListView(this);                 //A listview is displayed in the activity in which the id is clalled 'listView'.
+        ArrayAdapter<Special> adapter = new ArrayAdapter<Special>(this, R.layout.content_display_favorites, R.id.textview, specials);
         listView.setAdapter(adapter);
     }
 }

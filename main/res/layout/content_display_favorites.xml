@@ -8,13 +8,13 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.yourfullname.flashcards.laxspecials.DisplaySpecials"
-    tools:showIn="@layout/activity_display_specials">
+    tools:context="com.yourfullname.flashcards.laxspecials.DisplayFavorites"
+    tools:showIn="@layout/activity_display_favorites">
 
-    <ListView
-        android:id="@+id/listView"
+    <TextView
+        android:id="@+id/textview"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true" /TextView>
 </LinearLayout>
