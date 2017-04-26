@@ -51,7 +51,7 @@ public class FavoriteDataAccess {
 
         ArrayList<Special> specials = new ArrayList<Special>();
 
-        String query = "SELECT specials._id, specials.bar_id, bars.bar_name, special_day, special_description, bar_address FROM favorites NATURAL JOIN specials NATURAL JOIN bars";
+        String query = "SELECT DISTINCT specials._id, specials.bar_id, bars.bar_name, special_day, special_description, bar_address FROM favorites NATURAL JOIN specials NATURAL JOIN bars";
         Log.d(TAG, query);
         Cursor c = database.rawQuery(query,null);           //'c' is the handler on the Cursor
 
