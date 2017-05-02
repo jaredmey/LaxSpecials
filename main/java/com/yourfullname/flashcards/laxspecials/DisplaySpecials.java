@@ -74,8 +74,8 @@ public class DisplaySpecials extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ListView tags = (ListView) findViewById(R.id.listView);
-                int len = tags.getCount();
                 SparseBooleanArray checked = tags.getCheckedItemPositions();
+                int len = checked.size();
                 for (int i = 0; i < len; i++) {
                     int key = checked.keyAt(i);
                     if (checked.get(key)) {
