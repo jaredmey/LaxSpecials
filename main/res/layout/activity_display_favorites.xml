@@ -24,5 +24,14 @@
     <include layout="@layout/content_display_favorites"
         android:id="@+id/include" />
 
+    <Button
+        android:id="@+id/delbutton"
+        android:layout_width="104dp"
+        android:layout_height="74dp"
+        android:layout_gravity="top|left"
+        android:text="Delete From Favorites"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="bottom|right" />
+
 
 </android.support.design.widget.CoordinatorLayout>

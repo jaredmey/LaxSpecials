@@ -19,6 +19,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".DisplayMainActivity"
+            android:label="DisplayMainActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".DisplaySpecials"
             android:label="@string/title_activity_display_specials"
             android:theme="@style/AppTheme.NoActionBar"></activity>

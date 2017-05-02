@@ -47,6 +47,12 @@ public class FavoriteDataAccess {
         Log.d(TAG, query);
     }
 
+    public void removeSpecialFromFavorites(Long id) {
+
+        this.database.delete(TABLE_NAME, "_id = " + id, null);
+
+    }
+
     public ArrayList<Special> getFavorites()  {
 
         ArrayList<Special> specials = new ArrayList<Special>();
