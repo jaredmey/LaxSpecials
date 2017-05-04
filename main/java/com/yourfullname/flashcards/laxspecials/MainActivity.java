@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -57,8 +58,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendToMainActivity(View v) {
-        Intent i = new Intent(this, DisplayMainActivity.class);
-        startActivity(i);
+
+        EditText username = (EditText)findViewById(R.id.editText3);
+        EditText password = (EditText)findViewById(R.id.editText4);
+        if (String.valueOf(username.getText()).equals("0") && String.valueOf(password.getText()).equals("123")) {
+            Intent i = new Intent(this, DisplayMainActivity.class);
+            startActivity(i);
+        }else{
+            Toast toast = Toast.makeText(getApplicationContext(), "Wrong Username or Password!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     public void sendToNextActivity(View v){
