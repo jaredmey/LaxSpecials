@@ -1,19 +1,13 @@
 package com.yourfullname.flashcards.laxspecials;
 
-/**
- * Created by awrit_000 on 4/18/2017.
- */
-
 public class User {
-    //Instance variables for the Bars table
+    //Instance variables for the Users table
     private long id;
     private String name = "";
 
     //Setters and Getters for the private instance variables
 
-    public long getId() {
-        return id;
-    }
+    public long getId() { return id; }
 
     public void setId(long id) {
         this.id = id;

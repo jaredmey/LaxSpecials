@@ -19,7 +19,6 @@
         <item>Sports Nut</item>
         <item>Brothers</item>
         <item>The Waterfront</item>
-        <item>Howies</item>
     </string-array>
     <string name="title_activity_display_specials">DisplaySpecials</string>
 </resources>

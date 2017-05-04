@@ -7,9 +7,6 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-/**
- * Created by jmeyer27 on 4/18/17.
- */
 
 public class FavoriteDataAccess {
 
@@ -57,7 +54,7 @@ public class FavoriteDataAccess {
 
         ArrayList<Special> specials = new ArrayList<Special>();
 
-        String query = "SELECT DISTINCT specials._id, specials.bar_id, bars.bar_name, special_day, special_description, bar_address FROM favorites NATURAL JOIN specials NATURAL JOIN bars";
+        String query = "SELECT DISTINCT specials._id, specials.bar_id, bars.bar_name, special_day, special_description, bar_address FROM favorites NATURAL JOIN specials NATURAL JOIN bars ORDER BY bars.bar_id ASC";
         Log.d(TAG, query);
         Cursor c = database.rawQuery(query,null);           //'c' is the handler on the Cursor
 

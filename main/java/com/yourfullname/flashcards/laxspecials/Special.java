@@ -1,8 +1,5 @@
 package com.yourfullname.flashcards.laxspecials;
 
-/**
- * Created by Jimmy on 4/6/2016.
- */
 public class Special {
 
     private long id;

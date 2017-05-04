@@ -7,9 +7,6 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-/**
- * Created by Jimmy on 4/10/2016.
- */
 public class SpecialDataAccess {
 
     private SQLiteDatabase database;
@@ -67,7 +64,7 @@ public class SpecialDataAccess {
     public ArrayList<Special> getAllSpecialsByBar (String bar) {
         ArrayList<Special> specials = new ArrayList<Special>();
 
-        String query = "SELECT specials._id, specials.bar_id, bars.bar_name, special_day, special_description, bar_address FROM specials INNER JOIN bars ON bars.bar_id = specials.bar_id  WHERE bars.bar_name = '" + bar +"'";
+        String query = "SELECT specials._id, specials.bar_id, bars.bar_name, special_day, special_description, bar_address FROM specials INNER JOIN bars ON bars.bar_id = specials.bar_id  WHERE bars.bar_name = '" + bar +"' ORDER BY bars.bar_id ASC";
         Log.d(TAG, query);
         Cursor c = database.rawQuery(query,null);           //'c' is the handler on the Cursor
 
@@ -92,7 +89,7 @@ public class SpecialDataAccess {
 
         ArrayList<Special> specials = new ArrayList<Special>();
 
-        String query = "SELECT specials._id, specials.bar_id, bars.bar_name, special_day, special_description, bar_address FROM specials INNER JOIN bars ON bars.bar_id = specials.bar_id  WHERE special_day = '" + day +"'";
+        String query = "SELECT specials._id, specials.bar_id, bars.bar_name, special_day, special_description, bar_address FROM specials INNER JOIN bars ON bars.bar_id = specials.bar_id  WHERE special_day = '" + day +"' ORDER BY bars.bar_id ASC";
         Log.d(TAG, query);
         Cursor c = database.rawQuery(query,null);           //'c' is the handler on the Cursor
 

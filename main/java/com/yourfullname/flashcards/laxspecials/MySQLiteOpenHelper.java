@@ -8,9 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
 
-/**
- * Created by Jimmy on 4/6/2016.
- */
 public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
     private static final String TAG = MySQLiteOpenHelper.class.getSimpleName();

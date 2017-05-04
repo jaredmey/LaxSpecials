@@ -8,9 +8,6 @@ import android.view.View;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-/**
- * Created by jmeyer27 on 5/2/17.
- */
 
 public class DisplayMainActivity extends AppCompatActivity {
 

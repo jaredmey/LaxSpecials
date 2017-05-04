@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void sendToFavorites(View v){
-        //Not complete yet
         Intent i = new Intent(this, DisplayFavorites.class);             //Creating a new intent named i. Transfer from 'this' to DisplaySpecials.
         startActivity(i);                                               //Open up the next activity
     }

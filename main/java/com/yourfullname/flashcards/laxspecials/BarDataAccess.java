@@ -6,9 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
-/**
- * Created by Jimmy on 4/6/2016.
- */
+
 public class BarDataAccess {
     private SQLiteDatabase database;
     private MySQLiteOpenHelper dbHelper;
